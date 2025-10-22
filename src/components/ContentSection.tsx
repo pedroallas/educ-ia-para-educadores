@@ -6,9 +6,17 @@ interface ContentSectionProps {
   subtitle?: string;
   children: ReactNode;
   variant?: "default" | "accent";
+  icon?: ReactNode;
 }
 
-export const ContentSection = ({ id, title, subtitle, children, variant = "default" }: ContentSectionProps) => {
+export const ContentSection = ({
+  id,
+  title,
+  subtitle,
+  children,
+  variant = "default",
+  icon,
+}: ContentSectionProps) => {
   return (
     <section
       id={id}
@@ -16,7 +24,8 @@ export const ContentSection = ({ id, title, subtitle, children, variant = "defau
     >
       <div className="container mx-auto max-w-5xl">
         <div className="mb-12">
-          <h2 className="mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+          <h2 className="mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent flex items-center gap-3">
+            {icon && <span className="text-primary">{icon}</span>}
             {title}
           </h2>
           {subtitle && (
@@ -25,9 +34,7 @@ export const ContentSection = ({ id, title, subtitle, children, variant = "defau
             </p>
           )}
         </div>
-        <div className="prose prose-lg prose-invert max-w-none">
-          {children}
-        </div>
+        <div className="prose prose-lg prose-invert max-w-none">{children}</div>
       </div>
     </section>
   );
